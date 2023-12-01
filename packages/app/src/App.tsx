@@ -33,8 +33,27 @@ import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
+import { githubAuthApiRef } from '@backstage/core-plugin-api';
+import { SignInPage } from '@backstage/core-components';
 
 const app = createApp({
+  components: {
+    SignInPage: props => (
+      <SignInPage
+        {...props}
+        auto
+        providers={[
+          'guest',
+          {
+            id: 'github-auth-provider',
+            title: 'GitHub',
+            message: 'Sign in using GitHub',
+            apiRef: githubAuthApiRef,
+          },
+        ]}
+      />
+    ),
+  },
   apis,
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
@@ -74,20 +93,20 @@ const routes = (
         <ReportIssue />
       </TechDocsAddons>
     </Route>
-    <Route path="/create" element={<ScaffolderPage />} />
+    {/*<Route path="/create" element={<ScaffolderPage />} />*/}
     <Route path="/api-docs" element={<ApiExplorerPage />} />
-    <Route
-      path="/tech-radar"
-      element={<TechRadarPage width={1500} height={800} />}
-    />
-    <Route
-      path="/catalog-import"
-      element={
-        <RequirePermission permission={catalogEntityCreatePermission}>
-          <CatalogImportPage />
-        </RequirePermission>
-      }
-    />
+    {/*<Route*/}
+    {/*  path="/tech-radar"*/}
+    {/*  element={<TechRadarPage width={1500} height={800} />}*/}
+    {/*/>*/}
+    {/*<Route*/}
+    {/*  path="/catalog-import"*/}
+    {/*  element={*/}
+    {/*    <RequirePermission permission={catalogEntityCreatePermission}>*/}
+    {/*      <CatalogImportPage />*/}
+    {/*    </RequirePermission>*/}
+    {/*  }*/}
+    {/*/>*/}
     <Route path="/search" element={<SearchPage />}>
       {searchPage}
     </Route>
