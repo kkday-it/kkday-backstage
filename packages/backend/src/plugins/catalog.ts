@@ -1,10 +1,10 @@
 import { CatalogBuilder } from '@backstage/plugin-catalog-backend';
-import { ScaffolderEntitiesProcessor } from '@backstage/plugin-catalog-backend-module-scaffolder-entity-model';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 // yarn add --cwd packages/backend @backstage/plugin-catalog-backend-module-github
 import { GithubOrgEntityProvider } from '@backstage/plugin-catalog-backend-module-github';
 import { GithubEntityProvider } from '@backstage/plugin-catalog-backend-module-github';
+import { KKEntitiesProcessor } from '@internal/plugin-kkday-entities-common';
 
 export default async function createPlugin(
   env: PluginEnvironment,
@@ -33,7 +33,7 @@ export default async function createPlugin(
       scheduler: env.scheduler,
     }),
   );
-  builder.addProcessor(new ScaffolderEntitiesProcessor());
+  builder.addProcessor(new KKEntitiesProcessor());
   const { processingEngine, router } = await builder.build();
   await processingEngine.start();
   return router;
