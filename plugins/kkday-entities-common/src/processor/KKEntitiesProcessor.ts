@@ -12,7 +12,7 @@ import {
 } from '@backstage/plugin-catalog-node';
 import { LocationSpec } from '@backstage/plugin-catalog-common';
 import {
-  SystemEntityV1alpha1, SystemEntityV1alpha1Validator,
+  SystemEntityV1alpha1, systemEntityV1alpha1Validator,
 } from '@internal/plugin-kkday-entities-common';
 
 /**
@@ -25,7 +25,7 @@ export class KKEntitiesProcessor implements CatalogProcessor {
     return 'KKEntitiesProcessor';
   }
 
-  private readonly validators = [SystemEntityV1alpha1Validator];
+  private readonly validators = [systemEntityV1alpha1Validator];
 
   async validateEntityKind(entity: Entity): Promise<boolean> {
     for (const validator of this.validators) {

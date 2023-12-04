@@ -15,7 +15,7 @@ export interface SystemEntityV1alpha1 extends Entity {
   /**
    * The apiVersion string of the TaskSpec.
    */
-  apiVersion: 'backstage.io/v2alpha1';
+  apiVersion: 'kkday.com/v1alpha1';
   /**
    * The kind of the entity
    */
@@ -36,7 +36,7 @@ const validator = entityKindSchemaValidator(schema);
  *
  * @public
  */
-export const SystemEntityV1alpha1Validator: KindValidator = {
+export const systemEntityV1alpha1Validator: KindValidator = {
   async check(data: Entity) {
     return validator(data) === data;
   },
@@ -46,7 +46,7 @@ export const SystemEntityV1alpha1Validator: KindValidator = {
  * Typeguard for filtering entities and ensuring v1beta3 entities
  * @public
  */
-export const isSystemEntityV2alpha1 = (
+export const isSystemEntityV1alpha1 = (
   entity: Entity,
 ): entity is SystemEntityV1alpha1 =>
   entity.apiVersion === 'kkday.com/v1alpha1' &&
