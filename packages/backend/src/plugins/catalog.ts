@@ -33,7 +33,7 @@ export default async function createPlugin(
       scheduler: env.scheduler,
     }),
   );
-  // builder.addProcessor(new KKEntitiesProcessor());
+  builder.addProcessor(new KKEntitiesProcessor());
   const { processingEngine, router } = await builder.build();
   await processingEngine.start();
   return router;

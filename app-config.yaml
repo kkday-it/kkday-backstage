@@ -79,11 +79,6 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location]
   locations:
-    - type: file
-      target: ./../../catalog-info.yaml
-      rules:
-        - allow: [ Component ]
-
     - type: url
       target: https://github.com/kkday-it/backstage-catalog/blob/master/catalog-info.yaml
       rules:
